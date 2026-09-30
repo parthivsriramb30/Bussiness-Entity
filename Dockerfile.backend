@@ -1,0 +1,25 @@
+FROM python:3.12-slim
+
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install python dependencies
+COPY code/business_entity_resolution/requirements.txt /app/requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir fastapi uvicorn duckdb pydantic psutil pytest
+
+# Copy application files
+COPY backend /app/backend
+COPY code /app/code
+COPY utils /app/utils
+COPY Documentation_template.md /app/Documentation_template.md
+COPY package_submission.py /app/package_submission.py
+
+EXPOSE 8000
+
+CMD ["python", "-m", "uvicorn", "app.main:app", "--app-dir", "backend", "--host", "0.0.0.0", "--port", "8000"]

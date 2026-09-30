@@ -1,0 +1,87 @@
+# ==============================================================================
+# Git Ignore - Business Entity Resolution Platform (EntityMatch)
+# ==============================================================================
+
+# --- Large Datasets (> 100MB, cannot be committed to GitHub) ---
+dataset/**/*.tsv
+dataset/*.tsv
+*.tsv.gz
+*.tsv.zip
+
+# Keep dataset placeholder structure and documentation
+!dataset_placeholders/
+!dataset_placeholders/**
+!dataset/README_DATA_REQUIRED.md
+
+# --- Runtime Storage & Database Files ---
+storage/entitymatch.db
+storage/runs/
+*.duckdb
+*.duckdb.wal
+storage/**/*.duckdb
+storage/**/*.duckdb.wal
+
+# --- Temporary Execution Outputs ---
+output/*.tsv
+output/*.csv
+*.log
+
+# --- Python & Bytecode ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# --- Testing & Code Quality ---
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+
+# --- Node & Frontend ---
+node_modules/
+frontend/node_modules/
+frontend/.vite/
+.npm
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# --- Environment & Secrets ---
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# --- IDEs & OS specific ---
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+Thumbs.db
+Desktop.ini
